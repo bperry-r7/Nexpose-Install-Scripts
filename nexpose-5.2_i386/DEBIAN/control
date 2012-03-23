@@ -1,0 +1,10 @@
+
+Package: nexpose
+Version: 5.2
+Section: base
+Priority: optional
+Architecture: i386
+Depends: libstdc++5 (>= 1:3.3.6-20)
+Maintainer: Brandon Perry <brandon_perry@rapid7.com>
+Description: NeXpose Community Edition
+ This is the NeXpose Community Edition installer

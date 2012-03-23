@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "What is your first name?"
+read FIRSTNAME
+
+echo "What is your last name?"
+read LASTNAME
+
+echo "What company are you installing this for?"
+read COMPANY
+
+echo "What do you want your username to be?"
+read USERNAME
+
+echo "What do you want your password to be?"
+read PASSWORD1
+
+echo "Verify password:"
+read PASSWORD2
+
+while [ $PASSWORD1 != $PASSWORD2 ]
+do
+        echo "***PASSWORDS DO NOT MATCH***"
+        echo "What do you want your password to be?"
+        read PASSWORD1
+
+        echo "Verify password:"
+        read PASSWORD2
+done
+
+/tmp/NeXposeSetup-Linux32.bin -overwrite -q -Vfirstname="$FIRSTNAME" -Vlastname="$LASTNAME" -Vcompany="$COMPANY" -Vusername="$USERNAME" -Vpassword1="$PASSWORD1" -Vpassword2="$PASSWORD2" -Vsys.component.typical\$Boolean=true -Vsys.component.engine\$Boolean=false -VinitService\$Boolean=false
+
+echo "Removing Nexpose from startup...."
+update-rc.d -f nexposeconsole.rc remove > /dev/null
+
+echo -e "Please run: \n\t'cd /opt/rapid7/nexpose/nsc/ && sh ./nsc.sh'\n\nto start NeXpose for the first time. This initial startup may take several minutes depending on your hardware setup."
+
+exit 0

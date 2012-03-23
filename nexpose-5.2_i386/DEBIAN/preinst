@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TMPSPACE=`df /tmp/ | grep ^/dev/ | sed 's/  */\ /g' | cut -d " " -f4`
+ROOTSPACE=`df / | grep ^/dev/ | sed 's/  */\ /g' | cut -d " " -f4`
+
+TMPSPACE=`echo "$TMPSPACE/1000/1000" | bc`
+ROOTSPACE=`echo "$ROOTSPACE/1000/1000" | bc`
+
+if [ $TMPSPACE -lt 1 ]
+then
+	echo "Not enough space in /tmp. Bailing."
+	exit 255
+fi
+
+if [ $ROOTSPACE -lt 5 ]
+then
+	echo "Not enough space in /. Bailing."
+	exit 255
+fi
+
+exit 0
