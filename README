@@ -1,0 +1,8 @@
+0. git clone git://github.com/bperry-r7/Nexpose-Install-Scripts.git
+1. cd Nexpose-Install-Scripts/
+2. mkdir nexpose*/tmp
+3. wget http://download2.rapid7.com/download/NeXpose-v4/NeXposeSetup-Linux64.bin *amd64/tmp
+4. wget http://download2.rapid7.com/download/NeXpose-v4/NeXposeSetup-Linux32.bin *i386/tmp
+5. dpkg-deb --build nexpose*
+
+
